@@ -1,9 +1,16 @@
-python id="w0mj5o"
+import requests
 
-import random
+def get_gold_price():
+    url = "https://api.metals.live/v1/spot/gold"
+    response = requests.get(url)
+    data = response.json()
+    return float(data[0]["price"])
 
-price = random.randint(1800, 2000)
+price = get_gold_price()
 
+print(f"Current XAUUSD Price: {price}")
+
+# Simple strategy
 if price > 1950:
     print("SELL SIGNAL on XAUUSD")
 elif price < 1850:
